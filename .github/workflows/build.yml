@@ -29,7 +29,7 @@ jobs:
           flatpak build-export export build
           flatpak build-bundle export "org.polymc.PolyMC.flatpak" org.polymc.PolyMC --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
           
-          - name: Upload a Build Artifact
-            uses: actions/upload-artifact@v3.1.0
-            with:
-              path: org.polymc.PolyMC.flatpak
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: org.polymc.PolyMC.flatpak
