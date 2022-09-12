@@ -1,0 +1,94 @@
+app-id: org.polymc.PolyMC
+runtime: org.kde.Platform
+runtime-version: "5.15-21.08"
+sdk: org.kde.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.openjdk8
+add-extensions:
+  com.valvesoftware.Steam.Utility.gamescope:
+    version: stable
+    add-ld-path: lib
+    no-autodownload: true
+    directory: utils/gamescope
+
+command: polymc
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=all
+  - --share=network
+  - --socket=pulseaudio
+    # for Discord RPC mods
+  - --filesystem=xdg-run/app/com.discordapp.Discord:create
+    # Mod drag&drop
+  - --filesystem=xdg-download:ro
+    # gamescope
+  - --env=PATH=/app/bin:/app/utils/gamescope/bin:/usr/bin
+
+modules:
+  # Compile PolyMC
+  - name: compile
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DLauncher_BUILD_PLATFORM=flatpak
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    build-options:
+      env:
+        JAVA_HOME: /usr/lib/sdk/openjdk17/jvm/openjdk-17
+        JAVA_COMPILER: /usr/lib/sdk/openjdk17/jvm/openjdk-17/bin/javac
+    sources:
+      - type: git
+        url: https://github.com/PolyMC/PolyMC.git
+        branch: develop
+      - type: patch
+        path: 0001-Fix-meta.patch
+      - type: patch
+        path: 0002-crack.patch
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/jdk/
+      - /usr/lib/sdk/openjdk17/install.sh
+      - mv /app/jre /app/jdk/17
+      - /usr/lib/sdk/openjdk8/install.sh
+      - mv /app/jre /app/jdk/8
+    cleanup: [/jre]
+  - name: xrandr
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://xorg.freedesktop.org/archive/individual/app/xrandr-1.5.1.tar.xz
+        sha256: 7bc76daf9d72f8aff885efad04ce06b90488a1a169d118dea8a2b661832e8762
+    cleanup: [/share/man, /bin/xkeystone]
+  - name: gamemode
+    buildsystem: meson
+    config-opts:
+      - -Dwith-sd-bus-provider=no-daemon
+      - -Dwith-examples=false
+    sources:
+      - type: git
+        url: https://github.com/FeralInteractive/gamemode
+        tag: "1.6.1"
+  - name: gamemoderun
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 data/gamemoderun -t /app/bin
+    sources:
+      - type: git
+        url: https://github.com/FeralInteractive/gamemode
+        tag: 1.6.1
+  - name: enhance
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/utils/gamescope
+      - mkdir -p /app/bin
+      - install -Dm755 prime-run /app/bin/prime-run
+      - mv /app/bin/polymc /app/bin/polyrun
+      - install -Dm755 polymc /app/bin/polymc
+    sources:
+      - type: file
+        path: prime-run
+      - type: file
+        path: polymc

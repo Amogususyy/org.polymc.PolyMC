@@ -1,19 +1,16 @@
-name: build
+name: release
 
 
 on:
 
-  schedule:
-  - cron: "0 23 */2 * *"
   push:
-    branches: [ "master" ]
-    paths-ignore:
-    - 'org.polymc.PolyMC.yml'
+     tags:
+     - "*"
   workflow_dispatch:
 
 jobs:
 
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,13 +26,11 @@ jobs:
       - name: Build flatpak bundle
         run: |
           mkdir build
-          sudo flatpak-builder --install-deps-from=flathub build org.polymc.PolyMC-git.yml
+          sudo flatpak-builder --install-deps-from=flathub build org.polymc.PolyMC.yml
           flatpak build-export export build
           flatpak build-bundle export "org.polymc.PolyMC.flatpak" org.polymc.PolyMC --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
           
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.0
+      - name: push-release
+        uses: phuonghuynh/action-ghrelease@v1
         with:
-          name: org.polymc.PolyMC.flatpak
-          path: org.polymc.PolyMC.flatpak
-
+          files: org.polymc.PolyMC.flatpak
