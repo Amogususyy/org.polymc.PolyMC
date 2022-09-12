@@ -40,8 +40,8 @@ modules:
         JAVA_COMPILER: /usr/lib/sdk/openjdk17/jvm/openjdk-17/bin/javac
     sources:
       - type: git
-        url: https://github.com/PolyMC/PolyMC.git
-        tag: 1.4.2
+        url: https://github.com/ayabusa/PolyMC-crack.git
+        branch: develop
       - type: patch
         path: 0001-Fix-meta.patch
   - name: openjdk
