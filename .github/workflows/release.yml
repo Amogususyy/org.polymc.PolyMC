@@ -20,7 +20,7 @@ jobs:
       - name: Install flatpak and flatpak-builder
         run: sudo apt install flatpak flatpak-builder -y
         
-      - name: add falthub repo
+      - name: add flathub repo
         run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
       - name: Build flatpak bundle
