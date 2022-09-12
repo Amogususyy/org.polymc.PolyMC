@@ -32,5 +32,7 @@ jobs:
           
       - name: push-release
         uses: phuonghuynh/action-ghrelease@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: org.polymc.PolyMC.flatpak
