@@ -45,7 +45,7 @@ modules:
       - type: patch
         path: 0001-Fix-meta.patch
       - type: patch
-        path: 0002-crack.patch
+        path: 0003-crack-git.patch
   - name: openjdk
     buildsystem: simple
     build-commands:
