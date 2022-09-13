@@ -10,7 +10,7 @@ on:
     paths-ignore:
     - 'org.polymc.PolyMC.yml'
     - '.github/**'
-    - '*.md'
+    - '**.md'
   workflow_dispatch:
 
 jobs:
