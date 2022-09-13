@@ -13,3 +13,8 @@ Please see this comment: https://github.com/flathub/org.polymc.PolyMC/issues/13#
 
 The flatpak includes a `prime-run` script, which when set as the wrapper command in instance settings, runs MC using the Nvidia GPU.  
 Soon this should be unneccesary, as it has been fixed in the master branch of the launcher already.
+
+# Install cracked bundle file
+
+```
+wget 'https://github.com/Amogususyy/org.polymc.PolyMC/releases/download/v.1.4.2/org.polymc.PolyMC.flatpak' && flatpak install org.polymc.PolyMC.flatpak && rm org.polymc.PolyMC.flatpak
