@@ -20,7 +20,7 @@ jobs:
       - name: Install flatpak and flatpak-builder
         run: sudo apt install flatpak flatpak-builder -y
         
-      - name: add flathub repo
+      - name: Add flathub repo
         run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
       - name: Build flatpak bundle
@@ -30,7 +30,7 @@ jobs:
           flatpak build-export export build
           flatpak build-bundle export "org.polymc.PolyMC.flatpak" org.polymc.PolyMC --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
           
-      - name: push-release
+      - name: Push-release
         uses: phuonghuynh/action-ghrelease@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
