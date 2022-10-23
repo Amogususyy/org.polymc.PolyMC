@@ -9,7 +9,7 @@ on:
     branches: [ "master" ]
     paths-ignore:
     - 'org.polymc.PolyMC.yml'
-    - '.github/**'
+    - '.github/workflows/release.yml'
     - '**.md'
     tags-ignore: 
     - "*"
