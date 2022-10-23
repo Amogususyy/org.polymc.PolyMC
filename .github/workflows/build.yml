@@ -11,6 +11,8 @@ on:
     - 'org.polymc.PolyMC.yml'
     - '.github/**'
     - '**.md'
+    tags-ignore: 
+    - "*"
   workflow_dispatch:
 
 jobs:
