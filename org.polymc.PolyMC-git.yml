@@ -39,9 +39,9 @@ modules:
         JAVA_HOME: /usr/lib/sdk/openjdk17/jvm/openjdk-17
         JAVA_COMPILER: /usr/lib/sdk/openjdk17/jvm/openjdk-17/bin/javac
     sources:
-      - type: git
-        url: https://github.com/PolyMC/PolyMC.git
-        branch: develop
+      - type: archive
+        url: https://github.com/PolyMC/PolyMC/archive/refs/tags/1.4.2.tar.gz
+        sha256: 407a2ac3e627f8e360a5fe2490b1afd7fe73a1e347af8b33f1edeb4eb21171a3
       - type: patch
         path: 0001-Fix-meta.patch
       - type: patch
