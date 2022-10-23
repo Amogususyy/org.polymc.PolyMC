@@ -32,7 +32,7 @@ modules:
   - name: git
     buildsystem: simple
     build-commands: 
-      - git config protocol.file.allow always
+      - git config --global protocol.file.allow always
   # Compile PolyMC
   - name: compile
     buildsystem: cmake-ninja
