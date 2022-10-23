@@ -17,13 +17,13 @@ finish-args:
   - --share=ipc
   - --socket=x11
   - --socket=wayland
-  - --device=all
+  - --device=dri
   - --share=network
   - --socket=pulseaudio
     # for Discord RPC mods
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
     # Mod drag&drop
-  - --filesystem=xdg-download:ro
+  # - --filesystem=xdg-download:ro
     # gamescope
   - --env=PATH=/app/bin:/app/utils/gamescope/bin:/usr/bin
 
