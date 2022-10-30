@@ -31,7 +31,7 @@ jobs:
         run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         
       - name: git # Workaround for CVE-2022-39253
-        run: git config --global protocol.file.allow always
+        run: sudo git config --global protocol.file.allow always
         
       - name: Build flatpak bundle
         run: |
