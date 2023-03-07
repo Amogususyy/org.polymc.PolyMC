@@ -17,4 +17,4 @@ Soon this should be unneccesary, as it has been fixed in the master branch of th
 # Install cracked bundle file
 
 ```
-wget 'https://github.com/Amogususyy/org.polymc.PolyMC/releases/download/v.1.4.3/org.polymc.PolyMC.flatpak' && flatpak install org.polymc.PolyMC.flatpak && rm org.polymc.PolyMC.flatpak
+wget 'https://github.com/Amogususyy/org.polymc.PolyMC/releases/download/v.5.1/org.polymc.PolyMC.flatpak' && flatpak install org.polymc.PolyMC.flatpak && rm org.polymc.PolyMC.flatpak
