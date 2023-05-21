@@ -1,3 +1,4 @@
+Deprecated. See https://gist.github.com/Amogususyy/c4e0373f21ca51f714ec0cb449d3f0c0
 # org.polymc.PolyMC
 
 A flatpak for [PolyMC](https://github.com/PolyMC/PolyMC)  
